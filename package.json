@@ -1,0 +1,32 @@
+{
+  "name": "17_3_api_ganadores_oscar",
+  "version": "1.0.0",
+  "description": "Node Workshop API gandores de los Oscar ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch index.js",
+    "lint": "eslint",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OscarFerBarrera/17_3_API_Ganadores_Oscar.git"
+  },
+  "author": "Oscar Barrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OscarFerBarrera/17_3_API_Ganadores_Oscar/issues"
+  },
+  "homepage": "https://github.com/OscarFerBarrera/17_3_API_Ganadores_Oscar#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
