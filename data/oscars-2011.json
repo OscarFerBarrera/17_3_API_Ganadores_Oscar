@@ -121,7 +121,7 @@
   },
   {
     "category": "SCIENTIFIC AND TECHNICAL AWARD (Scientific and Engineering Award)",
-    "entity": "To DR. J\u00dcRGEN NOFFKE for the optical design and UWE WEBER for the mechanical design of the ARRI Zeiss Master Prime Lenses for motion picture photography."
+    "entity": "To DR. JÜRGEN NOFFKE for the optical design and UWE WEBER for the mechanical design of the ARRI Zeiss Master Prime Lenses for motion picture photography."
   },
   {
     "category": "SCIENTIFIC AND TECHNICAL AWARD (Scientific and Engineering Award)",
@@ -133,7 +133,7 @@
   },
   {
     "category": "SCIENTIFIC AND TECHNICAL AWARD (Scientific and Engineering Award)",
-    "entity": "To JOHN D. LOWRY, IAN CAV\u00c9N, IAN GODIN, KIMBALL THURSTON and TIM CONNOLLY for the development of a unique and efficient system for the reduction of noise and other artifacts, thereby providing high-quality images required by the filmmaking process."
+    "entity": "To JOHN D. LOWRY, IAN CAVÉN, IAN GODIN, KIMBALL THURSTON and TIM CONNOLLY for the development of a unique and efficient system for the reduction of noise and other artifacts, thereby providing high-quality images required by the filmmaking process."
   },
   {
     "category": "SCIENTIFIC AND TECHNICAL AWARD (Scientific and Engineering Award)",
@@ -146,5 +146,9 @@
   {
     "category": "JOHN A. BONNER MEDAL OF COMMENDATION",
     "entity": "To Jonathan Erland in appreciation for outstanding service and dedication in upholding the high standards of the Academy of Motion Picture Arts and Sciences."
+  },
+  {
+    "category": "Invented Category",
+    "entity": "Fran Linde"
   }
 ]

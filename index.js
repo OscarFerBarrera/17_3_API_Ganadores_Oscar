@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
   });
 });
 // listado de años disponibles
-router.get("/winersOscar", (req, res) => {
+router.get("/winnersOscar", (req, res) => {
   fs.readdir(winerOscarPath, (error, data) => {
     if (error) {
       res.status(500).send("Error inesperado");
@@ -39,16 +39,16 @@ router.get("/winersOscar", (req, res) => {
   });
 });
 // .Json de un año seleccionado 2011, 2012 ...
-router.get("/winersOscar/:id", (req, res) => {
+router.get("/winnersOscar/:id", (req, res) => {
   const id = `oscars-${req.params.id}.json`;
   const winerOscarPathId = winerOscarPath + "/" + id;
   fs.readFile(winerOscarPathId, (error, data) => {
     if (error) {
       res.status(500).send("Error inesperado");
     } else {
-      const winersOscar = JSON.parse(data);
-      if (winersOscar) {
-        res.json(winersOscar);
+      const winnersOscar = JSON.parse(data);
+      if (winnersOscar) {
+        res.json(winnersOscar);
       } else {
         res.status(404).send("Fichero no encontrado.");
       }
@@ -56,27 +56,35 @@ router.get("/winersOscar/:id", (req, res) => {
   });
 });
 
-router.post("/winersOscar/:id", (req, res) => {
-  // Leemos el fichero pokemons
-  fs.readFile(winerOscarPath, (error, data) => {
-    if (error) {
-      res.status(500).send("Error inesperado");
-    } else {
-      const pilotosF1 = JSON.parse(data);
-      const newPilotoF1 = req.body;
-      const lastId = pilotosF1[pilotosF1.length - 1].id;
-      newPilotoF1.id = lastId + 1;
-      pilotosF1.push(newPilotoF1);
+router.post("/winnersOscar/:id", (req, res) => {
+  const id = `oscars-${req.params.id}.json`;
+  const winerOscarPathId = winerOscarPath + "/" + id;
 
-      // Guardamos fichero
-      fs.writeFile(pilotosFilePath, JSON.stringify(pilotosF1), (error) => {
-        if (error) {
-          res.status(500).send("Error inesperado");
-        } else {
-          res.json(newPilotoF1);
-        }
-      });
+  // Leemos la ruta de los json
+  fs.readFile(winerOscarPathId, (error, data) => {
+    let winnersOscar = [];
+
+    if (!error) {
+      // si existe el fichero .json del año selecionado, almaceno los datos en un array previamente creado
+      try {
+        winnersOscar = JSON.parse(data);
+      } catch (error) {
+        res.status(500).send("Error inesperado");
+      }
     }
+    // si no existe el fichero .json del año seleccionado relleno un objecto con el body de la request,
+    // y lo pusheo en un array anteriormente creado
+    const newWinnerOscar = req.body;
+    winnersOscar.push(newWinnerOscar);
+
+    // Guardamos fichero, si no existe lo crea
+    fs.writeFile(winerOscarPathId, JSON.stringify(winnersOscar), (error) => {
+      if (error) {
+        res.status(500).send("Error inesperado");
+      } else {
+        res.json(newWinnerOscar);
+      }
+    });
   });
 });
 
