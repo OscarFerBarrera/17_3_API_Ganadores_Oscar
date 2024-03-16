@@ -1,5 +1,6 @@
 const express = require("express");
 const fs = require("fs");
+const { validateHeaderName } = require("http");
 const PORT = 3000;
 const server = express();
 const router = express.Router();
@@ -49,6 +50,42 @@ router.get("/winnersOscar/:id", (req, res) => {
       const winnersOscar = JSON.parse(data);
       if (winnersOscar) {
         res.json(winnersOscar);
+      } else {
+        res.status(404).send("Fichero no encontrado.");
+      }
+    }
+  });
+});
+// objeto con aquellos premiados que hayan recibido más de un Oscar
+router.get("/winners-multiple/:id", (req, res) => {
+  const id = `oscars-${req.params.id}.json`;
+  const winerOscarPathId = winerOscarPath + "/" + id;
+
+  fs.readFile(winerOscarPathId, (error, data) => {
+    if (error) {
+      res.status(500).send("Error inesperado");
+    } else {
+      const winnersOscar = JSON.parse(data);
+      // console.log(winnersOscar);
+      const xx = winnersOscar.reduce((acc, crr) => {
+        const exist = acc.find((value) => value.name === crr.entity);
+        if (exist) {
+          exist.awards.push({ category: crr.category, year: req.params.id });
+        } else {
+          acc.push({
+            name: crr.entity,
+            awards: [{ category: crr.category, year: req.params.id }],
+          });
+        }
+        return acc;
+      }, []);
+
+      const yy = xx.filter((value) => value.awards.length > 1);
+      // {name:pepe,
+      // awards:[{category:"", year:""}]}
+
+      if (yy) {
+        res.json(yy);
       } else {
         res.status(404).send("Fichero no encontrado.");
       }
